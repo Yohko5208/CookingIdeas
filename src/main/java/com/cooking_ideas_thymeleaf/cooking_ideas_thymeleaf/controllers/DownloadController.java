@@ -9,6 +9,6 @@ import javax.servlet.http.HttpSession;
 public class DownloadController {
     @GetMapping("download")
     String home(HttpSession session) {
-        return "redirect:https://drive.google.com/uc?export=download&id=1fcID6wUwGTTLlR0bfTSE35joXQV9wO_C";
+        return "redirect:https://drive.google.com/uc?export=download&id=1Z8gd80PWTZ38DBBcUvGxWq4biDf3eMTW";
     }
 }

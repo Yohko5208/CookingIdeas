@@ -179,6 +179,7 @@ public class User {
         JSONParser parser = new JSONParser();
 
         URL oracle = new URL("https://nameless-escarpment-94857.herokuapp.com/FindUser?identifiant="+username+"&password="+password); // URL to Parse
+        System.out.println(oracle);
         URLConnection yc = oracle.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
         JSONObject statusObj=null;
@@ -204,15 +205,19 @@ public class User {
         Long coin = (Long) statusObj.get("coin");
         List<String> realise= new ArrayList<>();
         JSONArray j = (JSONArray)statusObj.get("platRealise");
-        for (Object o: j) {
-            JSONObject obj = (JSONObject)o;
-            realise.add((String)obj.get("id"));
+        if(j!=null){
+            for (Object o: j) {
+                JSONObject obj = (JSONObject)o;
+                realise.add((String)obj.get("id"));
+            }
         }
         List<String> aime=new ArrayList<>();
         j=(JSONArray) statusObj.get("platAime");
-        for (Object o: j) {
-            JSONObject obj = (JSONObject)o;
-            aime.add((String)obj.get("id"));
+        if(j!=null){
+            for (Object o: j) {
+                JSONObject obj = (JSONObject)o;
+                aime.add((String)obj.get("id"));
+            }
         }
         User u = new User(id, usrname, pass, fname, lname, email, aime, realise, coin);
 
