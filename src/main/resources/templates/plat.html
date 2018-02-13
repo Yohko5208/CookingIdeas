@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <title>Projet Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"/>
+
+    <!-- Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css"/>
+
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css"/>
+
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"/>
+
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/util.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css"/>
+    <script src="js/sockjs-0.3.4.js"></script>
+    <script src="js/stomp.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+</head>
+<body onload="connect()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div id="preloader">
+    <div id="status"> <img src="img/preloader.gif" height="64" width="64" alt=""/> </div>
+</div>
+<!-- Navigation -->
+<nav class=" navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
+            <a class="navbar-brand page-scroll" href="index.html"> <i class="fa fa-paper-plane-o"></i> Cooking Ideas</a> </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden"> <a href="#page-top"></a> </li>
+                <li> <a class="page-scroll" th:href="home" href="index.html">Return Home</a> </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<div id="intro" class="text-center clearfix">
+    <div class="container">
+        <div class="section-title center">
+            <br/>
+            <br/>
+            <h2 style="color:#FFFFFF">Fiche Plat</h2>
+            <hr/>
+            <p></p>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+                <div class="thumbnail" style="height: 400px">
+                    <!-- Block2 -->
+                    <div class="block2">
+                        <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                            <img src="img/portfolio/02.jpg" th:src="'https://imagecooking.000webhostapp.com/images/'+${plat.image}" style="width:250px; height: 250px" alt="IMG-PRODUCT"/>
+
+                            <div class="block2-overlay trans-0-4">
+                                <div th:if="${session.user}">
+                                    <div th:if="${#lists.contains(session.user.plats_aimes, plat.id)}">
+                                        <a th:onclick="|like('${session.user.id}', '${plat.id}')|" href="" class="block2-btn-towishlist hov-pointer trans-0-4">
+
+                                            <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                                            <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div th:unless="${#lists.contains(session.user.plats_aimes, plat.id)}">
+                                        <a th:onclick="|like('${session.user.id}', '${plat.id}')|" href="" class="block2-btn-addwishlist hov-pointer trans-0-4">
+
+                                            <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                                            <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+                                <div th:unless="${session.user}">
+                                    <a href="login" class="block2-btn-addwishlist hov-pointer trans-0-4">
+                                        <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                                        <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div th:if="${session.user}">
+                                    <div class="block2-btn-addcart w-size1 trans-0-4">
+                                        <!-- Button -->
+                                       <button th:onclick="|realise('${session.user.id}', '${plat.id}')|" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                                            <p style="color:#ffffff"><i class="lnr lnr-magic-wand"></i> Réaliser</p>
+                                       </button>
+                                    </div>
+                                </div>
+                                <div th:unless="${session.user}">
+                                    <div class="block2-btn-addcart w-size1 trans-0-4">
+                                        <!-- Button -->
+                                        <a th:href="login">
+                                            <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                                                <p style="color:#ffffff"><i class="lnr lnr-magic-wand"></i> Réaliser</p>
+                                            </button>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="caption">
+                            <h3 th:text="${plat.name}">Name of the dish</h3>
+                            <br/>
+                            <p th:text="${plat.level}">Niveau</p>
+                            <hr/>
+                            <div class="col-md-4"><h4><i class="lnr lnr-heart"></i><span th:text="${plat.nbLike}" class="counter"> 1689</span></h4></div>
+                            <div class="col-md-4"><h4><i class="lnr lnr-magic-wand"></i><span th:text="${plat.nbRealisation}" class="counter"> 1689</span></h4></div>
+                            <div class="col-md-4"><h4><i class="lnr lnr-bubble"></i><span th:text="${#arrays.length(plat.commentaries)}" class="counter"> 1689</span></h4></div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7 col-md-offset-1 text-left">
+                <div class="thumbnail">
+                    <div class="">
+                        <h3 style="text-align:center">Ingrédients nécessaires :</h3>
+                        <br/>
+                        <hr/>
+                        <ul th:each="ingr : |${plat.ingredients}" class="list-group">
+                            <li class="list-group-item" style="font-size:14px; color:#1b1e21"><span class="lnr lnr-chevron-right" th:text="| ${ingr}|"></span></li>
+                        </ul>
+                            <br/>
+                        <br/>
+                        <h3 style="text-align:center">Préparation :</h3>
+                        <br/>
+                        <hr/>
+                        <ul th:each="recette : ${plat.recipe}" class="list-group">
+                            <li class="list-group-item" style="font-size:14px; color:#1b1e21"><span class="lnr lnr-pointer-right"  th:text="| ${recette}|" ></span></li>
+                        </ul>
+                        <br/>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <div class="thumbnail">
+                    <div>
+                        <h3 style="text-align: center">Commentaires</h3>
+                        <br/>
+                        <hr/>
+                        <div th:each="comm : ${plat.commentaries}">
+                            <div class="user row">
+                                <div class="col-md-1">
+                                    <div class="user_image">
+                                        <img style="width:75px; height: 75px;" src="img/team/01.jpg"/>
+                                    </div>
+
+                                </div>
+                                <div class="testimonials-caption col-lg-9 col-md-8">
+                                    <div class="user_text ">
+                                        <div th:text="${comm.username}" class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7" style="color: #1b1e21">
+                                            Elisha
+                                        </div>
+                                        <p class="mbr-fonts-style  display-7">
+                                            <em th:text="${comm.commentaires}">"Lorem ipsum dolor sit amet, consectetur adipisicing elit.!"</em>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+
+
+                        <br/>
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <div class="form-group">
+                                <textarea name="message" id="message" class="form-control" rows="4" placeholder="Laissez un commentaire" required="required"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div th:if="${session.user}">
+                                <button th:onclick="|comment('${session.user.id}', '${plat.id}')|" type="reset" class="btn btn-default" style="width: 80px; height: 30px; font-size:12px; padding : 2px 4px; margin-left:235px;">Commenter</button>
+                            </div>
+                            <div th:unless="${session.user}">
+                                <a href="login"><button type="button" class="btn btn-default" style="width: 80px; height: 30px; font-size:12px; padding : 2px 4px; margin-left:235px;">Commenter</button></a>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <div class="container">
+        <p>Copyright &copy; Cooking Ideas.</p>
+    </div>
+</div>
+<script th:inline="javascript" type="text/javascript">
+    /*<![CDATA[*/
+    var stompClient = null;
+    function comment(idUser, idPlat){
+        var comm = document.getElementById("message").value;
+        stompClient.send("/app/send/comment",{}, idPlat.concat('/',idUser,'/',comm) );
+        location.reload();
+    }
+    function like(idUser, idPlat){
+        stompClient.send("/app/send/like",{}, idPlat.concat('/',idUser) );
+        location.reload();
+    }
+    function realise(idUser, idPlat){
+        stompClient.send("/app/send/realize",{}, idPlat.concat('/',idUser) );
+        location.reload();
+    }
+    function setConnected(connected) {
+        document.getElementById('connect').disabled = connected;
+        document.getElementById('disconnect').disabled = !connected;
+        document.getElementById('calculationDiv').style.visibility = connected ? 'visible' : 'hidden';
+        document.getElementById('calResponse').innerHTML = '';
+    }
+    function connect() {
+        var socket = new SockJS('https://nameless-escarpment-94857.herokuapp.com/socket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function(frame) {
+            stompClient.subscribe('/chat', function(calResult){
+
+            });
+        });
+    }
+    /*]]>*/
+</script>
+<script type="text/javascript">
+    $('.block2-btn-addcart').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+
+    $('.block2-btn-addwishlist').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to wishlist !", "success");
+        });
+    });
+</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/jquery.parallax.js"></script>
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="js/contact_me.js"></script>
+
+<!-- Javascripts -->
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/main2.js" th:inline="javascript"></script>
+</body>
+</html>
