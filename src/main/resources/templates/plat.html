@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"/>
 
     <!-- Stylesheet-->
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
 
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
 
@@ -20,18 +19,11 @@
 
     <link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css"/>
 
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"/>
-
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"/>
-
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
-
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"/>
 
     <link rel="stylesheet" type="text/css" href="css/util.css"/>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <link rel="stylesheet" type="text/css"  href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css"/>
+    <link rel="stylesheet" type="text/css"  href="css/style.css"/>
     <script src="js/sockjs-0.3.4.js"></script>
     <script src="js/stomp.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
@@ -41,24 +33,7 @@
     <div id="status"> <img src="img/preloader.gif" height="64" width="64" alt=""/> </div>
 </div>
 <!-- Navigation -->
-<nav class=" navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-            <a class="navbar-brand page-scroll" th:href="home" href="index.html"> <i class="fa fa-paper-plane-o"></i> Cooking Ideas</a> </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                <li class="hidden"> <a href="#page-top"></a> </li>
-                <li> <a class="page-scroll" th:href="home" href="index.html">Return Home</a> </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+<div th:replace="header :: copy"></div>
 <div id="intro" class="text-center clearfix">
     <div class="container">
         <div class="section-title center">

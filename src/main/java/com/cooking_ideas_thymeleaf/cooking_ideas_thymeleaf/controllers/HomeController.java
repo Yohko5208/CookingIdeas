@@ -12,8 +12,8 @@ public class HomeController {
     String home(HttpSession session, Model model) {
         Plat p=new Plat();
         try{
-            model.addAttribute("platAime", p.getMostLiked());
-            model.addAttribute("platRealise", p.getMostRealised());
+            model.addAttribute("platAime", p.getMostLiked(4));
+            model.addAttribute("platRealise", p.getMostRealised(4));
             return "home";
         }
         catch(Exception e){

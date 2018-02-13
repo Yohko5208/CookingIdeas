@@ -31,14 +31,15 @@
             <ul class="nav navbar-nav">
                 <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                 <li class="hidden"> <a href="#page-top"></a> </li>
-                <li th:if="${session.user}"> <a class="page-scroll" href="disconnect">Se déconnecter</a></li>
-                <li th:unless="${session.user}"> <a class="page-scroll" href="login">Login</a></li>
-                <!--<li> <a class="page-scroll" href="#">Nos plats</a> </li>-->
+                <li> <a class="page-scroll" href="list?type=0">Nos plats</a> </li>
                 <li> <a class="page-scroll" href="#about">Notre app</a> </li>
                 <li> <a class="page-scroll" href="#services">Trouver des idées</a> </li>
                 <li> <a class="page-scroll" href="#works">Télécharger</a> </li>
                 <li> <a class="page-scroll" href="#testimonials">Notre équipe</a> </li>
                 <li> <a class="page-scroll" href="#contact">Contacts</a> </li>
+                <li th:if="${session.user}"> <a class="page-scroll" href="profile">Mon profil</a></li>
+                <li th:if="${session.user}"> <a class="page-scroll" href="disconnect">Déconnexion</a></li>
+                <li th:unless="${session.user}"> <a class="page-scroll" href="login">Se connecter</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -225,7 +226,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-            <h3>Laissez-nous un message</h3>
+            <!--<h3>Laissez-nous un message</h3>
             <form name="sentMessage" id="contactForm" novalidate="novalidate">
                 <div class="row">
                     <div class="col-md-6">
@@ -247,7 +248,7 @@
                 </div>
                 <div id="success"></div>
                 <button type="submit" class="btn btn-default">Envoyer le message</button>
-            </form>
+            </form>-->
             <div class="social">
                 <h3>Suivez nous</h3>
                 <ul>

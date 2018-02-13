@@ -218,6 +218,24 @@ public class User {
 
         return u;
     }
+    public List<Plat> getPlatUser(int indice) throws Exception{
+        List<Plat> ans = new ArrayList<>();
+        if(indice==1){
+            for (String s: this.getPlats_realises()) {
+                Plat p = new Plat();
+                p=p.parseJson(p.getPLatById(s));
+                ans.add(p);
+            }
+        }
+        if(indice==2){
+            for (String s: this.getPlats_aimes()) {
+                Plat p = new Plat();
+                p=p.parseJson(p.getPLatById(s));
+                ans.add(p);
+            }
+        }
+        return ans;
+    }
     public Boolean register(User u){
         try{
             JSONParser parser = new JSONParser();

@@ -20,83 +20,25 @@
     <div id="status"> <img src="img/preloader.gif" height="64" width="64" alt=""/> </div>
 </div>
 <!-- Navigation -->
-<nav class=" navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-            <a class="navbar-brand page-scroll" href="index.html"> <i class="fa fa-paper-plane-o"></i> Cooking Ideas</a> </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                <li class="hidden"> <a href="#page-top"></a> </li>
-                <li> <a class="page-scroll" href="index.html">Return Home</a> </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-<div id="intro" class="text-center clearfix">
+<div th:replace="header :: copy"></div>
+<div id="intro" class="text center clearfix">
     <div class="container">
         <div class="section-title center">
             <br/>
             <br/>
-            <h2 style="color:#FFFFFF">List</h2>
+            <h2 style="color:#FFFFFF">Liste</h2>
             <hr/>
-            <p>Here are the recipes you can prepare using the ingredients that you have!</p>
         </div>
-        <div id="row">
-
-            <div class="col-xs-6 col-md-3 col-sm-6">
-                <div class="thumbnail"> <img src="img/portfolio/01.jpg" alt="..." class="img-thumbnail team-img"/>
+        <div th:each="plat : ${liste}" id="row">
+        <a th:href="|plat?id=${plat.id}|">
+            <div class="col-xs-6 col-md-3 col-sm-6" style="height:350px">
+                <div class="thumbnail"> <img th:src="'https://imagecooking.000webhostapp.com/images/'+${plat.image}" alt="..." class="img-thumbnail team-img"/>
                     <div class="caption">
-                        <h3>Name of the dish</h3>
-                        <p>Brief description</p>
+                        <h3 th:text="${plat.name}">Name of the dish</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-3 col-sm-6">
-                <div class="thumbnail"> <img src="img/portfolio/01.jpg" alt="..." class="img-thumbnail team-img"/>
-                    <div class="caption">
-                        <h3>Name of the dish</h3>
-                        <p>Brief description</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3 col-sm-6">
-                <div class="thumbnail"> <img src="img/portfolio/01.jpg" alt="..." class="img-thumbnail team-img"/>
-                    <div class="caption">
-                        <h3>Name of the dish</h3>
-                        <p>Brief description</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3 col-sm-6">
-                <div class="thumbnail"> <img src="img/portfolio/01.jpg" alt="..." class="img-thumbnail team-img"/>
-                    <div class="caption">
-                        <h3>Name of the dish</h3>
-                        <p>Brief description</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3 col-sm-6">
-                <div class="thumbnail"> <img src="img/portfolio/01.jpg" alt="..." class="img-thumbnail team-img"/>
-                    <div class="caption">
-                        <h3>Name of the dish</h3>
-                        <p>Brief description</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3 col-sm-6">
-                <div class="thumbnail"> <img src="img/portfolio/01.jpg" alt="..." class="img-thumbnail team-img"/>
-                    <div class="caption">
-                        <h3>Name of the dish</h3>
-                        <p>Brief description</p>
-                    </div>
-                </div>
-            </div>
+        </a>
         </div>
     </div>
 </div>

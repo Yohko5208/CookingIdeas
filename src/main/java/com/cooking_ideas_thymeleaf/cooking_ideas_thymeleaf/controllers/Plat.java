@@ -214,10 +214,10 @@ class Plat {
 
         return ans;
     }
-    public List<Plat> getMostLiked() throws Exception{
+    public List<Plat> getListePlat(String url, int limit) throws Exception{
         List<Plat> ans = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        URL oracle = new URL("https://nameless-escarpment-94857.herokuapp.com/PlatLike"); // URL to Parse
+        URL oracle = new URL(url); // URL to Parse
         URLConnection yc = oracle.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
         String inputLine;
@@ -229,39 +229,29 @@ class Plat {
                 JSONObject json=(JSONObject)o;
                 Plat temp = this.parseJson(json);
                 ans.add(temp);
-                if(j==4){
-                    break;
+                if(limit>0){
+                    if(j==limit){
+                        break;
+                    }
+                    j++;
                 }
-                j++;
+
             }
 
         }
         in.close();
         return ans;
     }
-    public List<Plat> getMostRealised() throws Exception{
-        List<Plat> ans = new ArrayList<>();
-        JSONParser parser = new JSONParser();
-        URL oracle = new URL("https://nameless-escarpment-94857.herokuapp.com/PlatRealisation"); // URL to Parse
-        URLConnection yc = oracle.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-        String inputLine;
-        int i=0;
-        while ((inputLine = in.readLine()) != null) {
-            JSONArray a = (JSONArray) parser.parse(inputLine);
-            int j=0;
-            for(Object o : a){
-                JSONObject json=(JSONObject)o;
-                Plat temp = this.parseJson(json);
-                ans.add(temp);
-                if(j==4){
-                    break;
-                }
-                j++;
-            }
-
-        }
-        in.close();
+    public List<Plat> getAllPlat() throws Exception{
+        List<Plat> ans = this.getListePlat("https://nameless-escarpment-94857.herokuapp.com/PlatList", 0);
+        return ans;
+    }
+    public List<Plat> getMostLiked(int limit) throws Exception{
+        List<Plat> ans = this.getListePlat("https://nameless-escarpment-94857.herokuapp.com/PlatLike", limit);
+        return ans;
+    }
+    public List<Plat> getMostRealised(int limit) throws Exception{
+        List<Plat> ans = this.getListePlat("https://nameless-escarpment-94857.herokuapp.com/PlatRealisation", limit);
         return ans;
     }
 }

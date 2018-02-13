@@ -154,6 +154,127 @@ hr {
 .navbar-custom .nav li.active a:hover {
 	color: #fff;
 }
+/*[ Block2 ]
+///////////////////////////////////////////////////////////
+*/
+.block2-labelsale::before,
+.block2-labelnew::before
+{
+	z-index: 100;
+	font-family: Montserrat-Regular;
+	font-size: 12px;
+	color: white;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 22px;
+	border-radius: 11px;
+	position: absolute;
+	top: 12px;
+	left: 12px;
+}
+
+.block2-labelsale::before {
+	background-color: #e65540;
+	content: 'Sale';
+}
+
+.block2-labelnew::before {
+	background-color: #66a8a6;
+	content: 'New';
+}
+
+/* ------------------------------------ */
+.block2-overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.3);
+	opacity: 0;
+}
+
+/* ------------------------------------ */
+.block2-btn-addcart {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	bottom: -45px;
+}
+
+/* ------------------------------------ */
+.block2-btn-towishlist,
+.block2-btn-addwishlist {
+	display: block;
+	position: absolute;
+	top: 26px;
+	right: 20px;
+	font-size: 20px;
+	color: white;
+	line-height: 0;
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+}
+
+.block2-btn-addwishlist:hover {
+	color: white;
+}
+
+.block2-btn-addwishlist .icon-wishlist,
+.block2-btn-towishlist .icon-wishlist {
+	line-height: 0;
+}
+
+.block2-btn-addwishlist:hover .icon_heart_alt {
+	display: none;
+}
+
+.block2-btn-addwishlist:hover .icon_heart {
+	display: block;
+}
+
+/* ------------------------------------ */
+.block2-btn-towishlist .icon_heart_alt {
+	display: none;
+}
+
+.block2-btn-towishlist .icon_heart {
+	display: block;
+	color: #e65540;
+}
+
+/* ------------------------------------ */
+.block2-overlay:hover {
+	opacity: 1;
+}
+
+.block2-overlay:hover .block2-btn-addcart {
+	bottom: 20px;
+}
+
+.block2-overlay:hover .block2-btn-addwishlist,
+.block2-overlay:hover .block2-btn-towishlist{
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+
+
 /* Home Section */
 #intro {
 	display: table;
