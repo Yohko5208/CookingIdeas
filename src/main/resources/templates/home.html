@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav">
                 <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                 <li class="hidden"> <a href="#page-top"></a> </li>
-                <!--<li th:if="${session.user}"> <a class="page-scroll" href="profile.html">Mon profil</a></li>-->
+                <li th:if="${session.user}"> <a class="page-scroll" href="disconnect">Se déconnecter</a></li>
                 <li th:unless="${session.user}"> <a class="page-scroll" href="login">Login</a></li>
                 <!--<li> <a class="page-scroll" href="#">Nos plats</a> </li>-->
                 <li> <a class="page-scroll" href="#about">Notre app</a> </li>
@@ -65,26 +65,33 @@
             <h2>Notre application</h2>
             <hr/>
             <div class="clearfix"></div>
-            <p>Cooking Ideas est avant tout une application mobile. Si vous voulez bénéficier de notre plein potentiel, nous vous invitons à télécharger l'application. <br/><em>Vous pouvez même secouer votre écran à tout moment pour voir une recette aléatoire !</em></p>
+            <p>Cooking Ideas est avant tout une application mobile. Si vous voulez bénéficier de notre plein potentiel (Recherche de plats par ingrédients, Liste de tous les plats, Quizz, etc..) , nous vous invitons à télécharger l'application. <br/><em>Vous pouvez même secouer votre écran à tout moment pour voir une recette aléatoire !</em></p>
         </div>
         <div class="row">
 
-            <div class="col-xs-6 col-md-4 col-sm-6">
+            <div class="col-xs-6 col-md-3 col-sm-6">
                 <div class="thumbnail"> <img src="img/1.png" alt="..." class="img-thumbnail screen-img"/>
                     <div class="caption">
                         <p></p>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-4 col-sm-6">
+            <div class="col-xs-6 col-md-3 col-sm-6">
                 <div class="thumbnail"> <img src="img/2.png" alt="..." class="img-thumbnail screen-img"/>
                     <div class="caption">
                         <p></p>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-4 col-sm-6">
+            <div class="col-xs-6 col-md-3 col-sm-6">
                 <div class="thumbnail"> <img src="img/3.png" alt="..." class="img-thumbnail screen-img"/>
+                    <div class="caption">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-6">
+                <div class="thumbnail"> <img src="img/4.png" alt="..." class="img-thumbnail screen-img"/>
                     <div class="caption">
                         <p></p>
                     </div>
@@ -109,7 +116,7 @@
             <ul class="cat">
                 <li>
                     <ol class="type">
-                        <li><a href="#" data-filter="*" class="active">Tous</a></li>
+                        <li><a href="#" data-filter="*" class="active">Quelques Plats</a></li>
                         <li><a href="#" data-filter=".lorem">Les plus appréciés</a></li>
                         <li><a href="#" data-filter=".consectetur">Les plus préparés</a></li>
 
