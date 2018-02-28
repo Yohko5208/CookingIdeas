@@ -54,14 +54,14 @@
                             <div class="block2-overlay trans-0-4">
                                 <div th:if="${session.user}">
                                     <div th:if="${#lists.contains(session.user.plats_aimes, plat.id)}">
-                                        <a th:onclick="|like('${session.user.id}', '${plat.id}')|" href="" class="block2-btn-towishlist hov-pointer trans-0-4">
+                                        <a th:onclick="|like('${session.user.token}', '${plat.id}')|" href="" class="block2-btn-towishlist hov-pointer trans-0-4">
 
                                             <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
                                             <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
                                         </a>
                                     </div>
                                     <div th:unless="${#lists.contains(session.user.plats_aimes, plat.id)}">
-                                        <a th:onclick="|like('${session.user.id}', '${plat.id}')|" href="" class="block2-btn-addwishlist hov-pointer trans-0-4">
+                                        <a th:onclick="|like('${session.user.token}', '${plat.id}')|" href="" class="block2-btn-addwishlist hov-pointer trans-0-4">
 
                                             <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
                                             <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
@@ -79,7 +79,7 @@
                                 <div th:if="${session.user}">
                                     <div class="block2-btn-addcart w-size1 trans-0-4">
                                         <!-- Button -->
-                                       <button th:onclick="|realise('${session.user.id}', '${plat.id}')|" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                                       <button th:onclick="|realise('${session.user.token}', '${plat.id}')|" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
                                             <p style="color:#ffffff"><i class="lnr lnr-magic-wand"></i> Réaliser</p>
                                        </button>
                                     </div>
@@ -174,7 +174,7 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div th:if="${session.user}">
-                                <button th:onclick="|comment('${session.user.id}', '${plat.id}')|" type="reset" class="btn btn-default" style="width: 80px; height: 30px; font-size:12px; padding : 2px 4px; margin-left:235px;">Commenter</button>
+                                <button th:onclick="|comment('${session.user.token}', '${plat.id}')|" type="reset" class="btn btn-default" style="width: 80px; height: 30px; font-size:12px; padding : 2px 4px; margin-left:235px;">Commenter</button>
                             </div>
                             <div th:unless="${session.user}">
                                 <a href="login"><button type="button" class="btn btn-default" style="width: 80px; height: 30px; font-size:12px; padding : 2px 4px; margin-left:235px;">Commenter</button></a>
@@ -197,17 +197,17 @@
 <script th:inline="javascript" type="text/javascript">
     /*<![CDATA[*/
     var stompClient = null;
-    function comment(idUser, idPlat){
+    function comment(token, idPlat){
         var comm = document.getElementById("message").value;
-        stompClient.send("/app/send/comment",{}, idPlat.concat('/',idUser,'/',comm) );
+        stompClient.send("/app/send/comment",{}, idPlat.concat('/',token,'/',comm) );
         location.reload();
     }
-    function like(idUser, idPlat){
-        stompClient.send("/app/send/like",{}, idPlat.concat('/',idUser) );
+    function like(token, idPlat){
+        stompClient.send("/app/send/like",{}, idPlat.concat('/',token) );
         location.reload();
     }
-    function realise(idUser, idPlat){
-        stompClient.send("/app/send/realize",{}, idPlat.concat('/',idUser) );
+    function realise(token, idPlat){
+        stompClient.send("/app/send/realize",{}, idPlat.concat('/',token) );
         location.reload();
     }
     function setConnected(connected) {
@@ -221,7 +221,9 @@
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             stompClient.subscribe('/chat', function(calResult){
-
+                if(message.body==""){
+                    window.location = "login";
+                }
             });
         });
     }

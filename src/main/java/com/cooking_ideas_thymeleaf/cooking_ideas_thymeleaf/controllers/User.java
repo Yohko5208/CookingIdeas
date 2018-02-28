@@ -3,24 +3,22 @@ package com.cooking_ideas_thymeleaf.cooking_ideas_thymeleaf.controllers;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
 
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.bouncycastle.asn1.x500.style.RFC4519Style.o;
-import static org.bouncycastle.util.io.Streams.readAll;
+
 
 public class User {
 
     String id;
+    String token;
     String username;
     String password;
     String first_name;
@@ -39,9 +37,10 @@ public class User {
         this.setUsername(usrname);
         this.setPassword(pass);
     }
-    public User(String idN, String usrname, String pass, String fname, String lname, String email, List<String> aime, List<String> realise, Long coin){
+    public User(String idN, String token, String usrname, String pass, String fname, String lname, String email, List<String> aime, List<String> realise, Long coin){
 
         this.setId(idN);
+        this.setToken(token);
         this.setUsername(usrname);
         this.setPassword(pass);
         this.setFirst_name(fname);
@@ -105,6 +104,9 @@ public class User {
         this.commentaires = commentaires;
     }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
     //Getters
 
     public String getId() {
@@ -150,6 +152,8 @@ public class User {
     public Long getCoin() {
         return coin;
     }
+
+    public String getToken(){ return token; }
 
     //Functions
     public String login(String username, String password) throws Exception{
@@ -197,6 +201,7 @@ public class User {
         //String status = (String) statusObj.get("status");
         String id = (String) statusObj.get("id");
         System.out.println(id);
+        String token = (String) statusObj.get("token");
         String usrname=(String) statusObj.get("identifiant");
         String pass=(String) statusObj.get("password");
         String fname=(String) statusObj.get("name");
@@ -219,7 +224,7 @@ public class User {
                 aime.add((String)obj.get("id"));
             }
         }
-        User u = new User(id, usrname, pass, fname, lname, email, aime, realise, coin);
+        User u = new User(id, token, usrname, pass, fname, lname, email, aime, realise, coin);
 
         return u;
     }

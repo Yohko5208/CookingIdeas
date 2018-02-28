@@ -151,17 +151,6 @@
 
     /*[ Block2 button wishlist ]
     ===========================================================*/
-    $('.block2-btn-addwishlist').on('click', function(e){
-        e.preventDefault();
-        $(this).removeClass('block2-btn-addwishlist');
-        $(this).addClass('block2-btn-towishlist');
-        var idPlat = /*[[${plat.id}]]*/'idPLat';
-        var idUser = /*[[${plat.id}]]*/ 'idUser';
-        stompClient.send("/app/send/like",{}, idPlat.concat(idUser) );
-        alert("Ok");
-        $(this).off('click');
-
-    });
 
     /*[ +/- num product ]
     ===========================================================*/
